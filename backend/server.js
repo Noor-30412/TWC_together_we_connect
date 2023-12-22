@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const userRoutes = require('./routings/userRoutes');
+const authRoutes = require('./routings/authRoutes');
 
 dotenv.config();
 
@@ -35,6 +36,7 @@ connection.once('open', () => {
 
 // Routes
 app.use('/api/users', userRoutes);
+app.use('/api/auth', authRoutes); // Use a different route for auth
 
 // Start the server
 app.listen(PORT, () => {
