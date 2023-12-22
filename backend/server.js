@@ -1,4 +1,3 @@
-// backend/server.js
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -15,16 +14,19 @@ app.use(cors());
 app.use(express.json());
 
 // MongoDB Connection
-mongoose.connect(process.env.MONGODB_URI, {
+async function connectToMongoDB() {
+  try {
+    await mongoose.connect(process.env.MONGODB_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log("Connected to MongoDB");
+  } catch (err) {
+    console.error("Error connecting to MongoDB:", err);
+  }
+}
 
-  useNewUrlParser: true,
-
-  useUnifiedTopology: true
-
-}, err => {
-  if (err) throw err;
-  console.log('Connected to MongoDB!!!')
-});
+connectToMongoDB();
 
 const connection = mongoose.connection;
 connection.once('open', () => {
