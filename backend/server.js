@@ -4,6 +4,7 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const userRoutes = require('./routings/userRoutes');
 const authRoutes = require('./routings/authRoutes');
+const protectedRoutes = require('./routings/protectedRoutes');
 
 dotenv.config();
 
@@ -37,6 +38,7 @@ connection.once('open', () => {
 // Routes
 app.use('/api/users', userRoutes);
 app.use('/api/auth', authRoutes); // Use a different route for auth
+app.use('/api', protectedRoutes);
 
 // Start the server
 app.listen(PORT, () => {

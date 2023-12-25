@@ -1,4 +1,4 @@
-// backend/routings/protectedRoutes.js (or a new file for protected routes)
+// backend/routings/protectedRoutes.js
 const express = require('express');
 const router = express.Router();
 const authMiddleware = require('../middleware/authMiddleware');
