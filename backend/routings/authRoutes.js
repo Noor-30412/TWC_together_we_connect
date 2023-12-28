@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
+const session = require('express-session');
 
 
 
@@ -21,6 +22,7 @@ router.post('/login', async (req, res) => {
             return res.status(401).json({ message: 'Invalid username or password' });
         }
 
+        req.session.userId = user._id;
         // Generate a JWT for the authenticated user
         const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
