@@ -1,0 +1,91 @@
+[33mcommit 7c1e0cfac41d6f1447f8d91d91290607ccd0271c[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: Noor-30412 <2100030412@kluniversity.in>
+Date:   Thu Dec 28 14:06:07 2023 +0530
+
+    change
+
+[33mcommit f9277f140bc2e954cefc364a38e92c738c44ac5a[m
+Author: Noor-30412 <2100030412@kluniversity.in>
+Date:   Thu Dec 28 14:03:58 2023 +0530
+
+    deleted unwanted files
+
+[33mcommit 1f927b03e36890b2560abf0fc7d23d5b1821c9c5[m
+Author: Noor-30412 <2100030412@kluniversity.in>
+Date:   Thu Dec 28 13:59:35 2023 +0530
+
+    delete unwanted files
+
+[33mcommit 62952af741c09bdfa5aa4a62f0b3ce3c0d394447[m
+Author: Noor-30412 <2100030412@kluniversity.in>
+Date:   Thu Dec 28 13:58:56 2023 +0530
+
+    deleted redundant files
+
+[33mcommit 3a38c9c839565e2de5e78b086d34b4cbee712e60[m
+Author: Noor-30412 <2100030412@kluniversity.in>
+Date:   Thu Dec 28 10:37:58 2023 +0530
+
+    other
+
+[33mcommit 78008d2bbd8978458b911444f23b572266d4e246[m
+Author: Noor-30412 <2100030412@kluniversity.in>
+Date:   Thu Dec 28 10:23:45 2023 +0530
+
+    Resolve package.json conflicts
+
+[33mcommit 43c86b03ac6fd4b6748baa1dcfa24ae1318a9b20[m
+Merge: 53c425f f07caab
+Author: Noor-30412 <2100030412@kluniversity.in>
+Date:   Thu Dec 28 10:20:21 2023 +0530
+
+    Merge remote changes
+
+[33mcommit 53c425f9e3983b6cb8ccf7101be72af112433d37[m
+Author: Noor-30412 <2100030412@kluniversity.in>
+Date:   Thu Dec 28 10:16:42 2023 +0530
+
+    Fix routing issues in AppRoutes and Login components
+
+[33mcommit f07caab19bf57cb537ba90ee9f8353cc293e10e3[m
+Merge: de35391 30af587
+Author: Noor-30412 <2100030412@kluniversity.in>
+Date:   Thu Dec 28 10:13:40 2023 +0530
+
+    Resolve merge conflicts
+
+[33mcommit de35391b31b5c941a9b599bf5a28edd05ca19f87[m
+Author: Noor-30412 <2100030412@kluniversity.in>
+Date:   Thu Dec 28 10:07:48 2023 +0530
+
+    Added login and signup pages with Connection with back end.
+
+[33mcommit 30af587fc4124e132e895e0763b23726137a73c9[m
+Author: Noor-30412 <2100030412@kluniversity.in>
+Date:   Mon Dec 25 12:57:04 2023 +0530
+
+    updated proxy in package.json
+
+[33mcommit 9e52f0dca59ab14a80c971f72f0ec3e477c4338f[m
+Author: Noor-30412 <2100030412@kluniversity.in>
+Date:   Mon Dec 25 12:45:15 2023 +0530
+
+    ProtectedRoute is working using Authorization : API key
+
+[33mcommit 7ea9cb3902cbadce6ebcceaaba4d6feb4eb79b26[m
+Author: Noor-30412 <2100030412@kluniversity.in>
+Date:   Fri Dec 22 20:30:54 2023 +0530
+
+    MongoDB atlas connection and api for login and register is done
+
+[33mcommit 5b8c0fd1e8ab6e4eafa9a869334b73f0bfb844a5[m
+Author: Noor-30412 <2100030412@kluniversity.in>
+Date:   Fri Dec 22 20:30:25 2023 +0530
+
+    MongoDB atlas connection and api for login and register is done
+
+[33mcommit 5b548f1d447130a67dd3a3290614cb226f6de400[m
+Author: Noor-30412 <2100030412@kluniversity.in>
+Date:   Thu Dec 21 17:14:01 2023 +0530
+
+    Initial commit
