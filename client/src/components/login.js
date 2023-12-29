@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+import { useAuth } from '../context/AuthContext';
 
 const Login = () => {
     const [loginData, setLoginData] = useState({
@@ -11,6 +11,7 @@ const Login = () => {
     });
 
     const navigate = useNavigate();
+    const { login } = useAuth();
 
     const handleInputChange = (e) => {
         setLoginData({ ...loginData, [e.target.name]: e.target.value });
@@ -19,9 +20,10 @@ const Login = () => {
     const handleLogin = async () => {
         try {
             const response = await axios.post('/api/auth/login', loginData);
-            console.log(response.data);
-            // Store token in local storage or state
-            navigate('/home'); // Use navigate instead of history.push
+            const user = response.data; // Log this user object
+            console.log('User:', user);
+            login(user);
+            navigate('/home');
         } catch (error) {
             console.error('Login error:', error.response.data.message);
         }

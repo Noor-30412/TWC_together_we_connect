@@ -1,15 +1,18 @@
-
+// App.js
 import './App.css';
 import React from 'react';
 import AppRoutes from './Routes';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
 
 function App() {
   return (
     <div className="App">
-
-      <h1>TWC</h1>
-      <AppRoutes />
-
+      <Router>
+        <AuthProvider>
+          <AppRoutes />
+        </AuthProvider>
+      </Router>
     </div>
   );
 }

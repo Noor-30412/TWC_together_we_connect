@@ -4,8 +4,6 @@ const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const session = require('express-session');
 
-
-
 router.post('/login', async (req, res) => {
     try {
         const { username, password } = req.body;
@@ -26,7 +24,8 @@ router.post('/login', async (req, res) => {
         // Generate a JWT for the authenticated user
         const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
-        res.status(200).json({ message: 'Login successful', token, userId: user._id });
+        // Send the username in the response
+        res.status(200).json({ message: 'Login successful', token, userId: user._id, username: user.username });
     } catch (error) {
         console.error('Error during login:', error);
         res.status(500).json({ message: 'Internal Server Error' });
