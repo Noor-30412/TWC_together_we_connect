@@ -4,12 +4,16 @@ const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const session = require('express-session');
 
+
 router.post('/login', async (req, res) => {
     try {
-        const { username, password } = req.body;
+        const { identifier, password } = req.body;
 
-        // Find the user by username
-        const user = await User.findOne({ username });
+        // Find the user by username or email based on the provided identifier
+        const user = await User.findOne({
+            $or: [{ username: identifier }, { email: identifier }],
+        });
+
         if (!user) {
             return res.status(401).json({ message: 'Invalid username or password' });
         }
@@ -20,7 +24,9 @@ router.post('/login', async (req, res) => {
             return res.status(401).json({ message: 'Invalid username or password' });
         }
 
+        // Set user ID in the session
         req.session.userId = user._id;
+
         // Generate a JWT for the authenticated user
         const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
