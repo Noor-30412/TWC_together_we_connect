@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 
 router.post('/register', async (req, res) => {
     try {
-        const { username, email, password } = req.body;
+        const { username, email, password, firstName, lastName, mobileNumber, altMobileNumber } = req.body;
 
         // Check if the username or email is already taken
         const existingUser = await User.findOne({ $or: [{ username }, { email }] });
@@ -15,7 +15,17 @@ router.post('/register', async (req, res) => {
         }
 
         // Create a new user with 'isVerified' set to false
-        const newUser = new User({ username, email, password, isVerified: false });
+        const newUser = new User({
+            username,
+            email,
+            password,
+            firstName,
+            lastName,
+            mobileNumber,
+            altMobileNumber,
+            isVerified: false
+        });
+
         await newUser.save();
 
         // Generate a JWT for the newly registered user
@@ -23,12 +33,12 @@ router.post('/register', async (req, res) => {
 
         // Send verification email (uncomment and complete this section if needed)
         /*
-        const verificationLink = `${process.env.FRONTEND_URL}/verify?token=${token}`;
+        const verificationLink = ${process.env.FRONTEND_URL}/verify?token=${token};
         const mailOptions = {
             from: process.env.EMAIL_USER,
             to: newUser.email,
             subject: 'Verify Your Email',
-            html: `Click <a href="${verificationLink}">here</a> to verify your email.`,
+            html: Click <a href="${verificationLink}">here</a> to verify your email.,
         };
 
         await transporter.sendMail(mailOptions);
