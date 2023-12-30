@@ -1,3 +1,4 @@
+// routes/users.js
 const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
@@ -13,32 +14,33 @@ router.post('/register', async (req, res) => {
             firstName, 
             lastName, 
             mobileNumber, 
-            altMobileNumber, 
-            dateOfBirth,  // Assuming dateOfBirth is a new field
-            address  // Assuming address is a new field
+            altMobileNumber 
         } = req.body;
+
+        // Validate username (at least 3 characters)
+        if (!validator.isLength(username, { min: 3 })) {
+            return res.status(400).json({ message: 'Username must be at least 3 characters long' });
+        }
 
         // Validate email format
         if (!validator.isEmail(email)) {
             return res.status(400).json({ message: 'Invalid email format' });
         }
 
-        // Validate password strength
+        // Validate password strength (at least 6 characters)
         if (password.length < 6) {
             return res.status(400).json({ message: 'Password must be at least 6 characters long' });
         }
 
-        // Validate mobile number
+        // Validate mobile number (exactly 10 digits)
         if (!/^\d{10}$/.test(mobileNumber)) {
             return res.status(400).json({ message: 'Mobile Number must have exactly 10 digits' });
         }
 
-        // Validate date of birth (example validation)
-        if (!validator.isISO8601(dateOfBirth)) {
-            return res.status(400).json({ message: 'Invalid date of birth format' });
+        // Validate alternative mobile number (optional, exactly 10 digits)
+        if (altMobileNumber && !/^\d{10}$/.test(altMobileNumber)) {
+            return res.status(400).json({ message: 'Alt Mobile Number must have exactly 10 digits' });
         }
-
-        // Additional validations for other fields can be added here
 
         const existingUser = await User.findOne({ $or: [{ username }, { email }] });
         if (existingUser) {
@@ -53,8 +55,6 @@ router.post('/register', async (req, res) => {
             lastName,
             mobileNumber,
             altMobileNumber,
-            dateOfBirth,
-            address,
             isVerified: false
         });
 
