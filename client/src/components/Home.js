@@ -1,9 +1,8 @@
-// In your Home component
+// Home.js
 import React from 'react';
 import { useAuth } from '../context/AuthContext';
 import { Link, useNavigate } from 'react-router-dom';
 
-// Home.js
 const Home = () => {
     const { isAuthenticated, user, logout } = useAuth();
     const navigate = useNavigate();
@@ -19,6 +18,7 @@ const Home = () => {
                 <>
                     <button onClick={handleLogout}>Logout</button>
                     <Link to="/register-buyer">Register Buyer Shop</Link>
+                    <Link to="/register-seller">Register Seller Shop</Link>
                 </>
             );
         } else {
