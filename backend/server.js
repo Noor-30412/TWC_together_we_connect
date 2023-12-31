@@ -6,6 +6,7 @@ const session = require('express-session');
 const userRoutes = require('./routings/userRoutes');
 const authRoutes = require('./routings/authRoutes');
 const protectedRoutes = require('./routings/protectedRoutes');
+const buyerRoutes = require('./routings/buyerRoutes');
 // const emailVerificationRoutes = require('./routings/emailVerificationRoutes');
 
 dotenv.config();
@@ -49,6 +50,7 @@ connection.once('open', () => {
 app.use('/api/users', userRoutes);
 app.use('/api/auth', authRoutes); // Use a different route for auth
 app.use('/api', protectedRoutes);
+app.use('/api/buyers', buyerRoutes);
 // app.use('/api/auth/email-verification', emailVerificationRoutes);
 
 // Start the server
