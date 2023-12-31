@@ -15,6 +15,7 @@ const Login = () => {
 
     const handleInputChange = (e) => {
         setLoginData({ ...loginData, [e.target.name]: e.target.value });
+        setError('');
     };
 
     const handleLogin = async () => {
@@ -23,6 +24,7 @@ const Login = () => {
             const { token, userId, username } = response.data;
             console.log('User logged in:', username);
             login({ token, userId, username });
+            localStorage.setItem('token', response.data.token);
             navigate('/home');
         } catch (error) {
             console.error('Login error:', error.response?.data?.message);
