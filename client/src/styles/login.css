@@ -1,0 +1,90 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #e2a6fe;
+    border: 1px solid #000000;
+    border-radius: 40px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+}
+
+.form-box {
+    width: 50%; /* Adjusted to take 50% width of the container */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content horizontally */
+    justify-content: center; /* Center content vertically */
+    text-align: center; /* Center text content */
+}
+
+.form-box .bottom-link {
+    white-space: nowrap; /* Prevent text from wrapping to the next line */
+}
+
+
+.form-content {
+    width: 100%;
+    padding: 35px;
+}
+
+.form-box a {
+    color: #ff0000;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.form-box a:hover {
+    text-decoration: underline;
+}
+
+form button {
+    width: 100%;
+    color: #fff;
+    border: none;
+    outline: none;
+    padding: 14px 0; /* Adjusted padding */
+    font-size: 1.5rem;
+    font-weight: 600;
+    border-radius: 80px;
+    cursor: pointer;
+    margin: 40px 0;
+    background: #000000;
+    transition: 0.1s ease;
+}
+
+form button:hover {
+    background: #9b6ff9;
+}
+
+.form-box .form-content {
+    width: 100%;
+    padding: 35px;
+}
+
+.form-box h2 {
+    text-align: center;
+    margin-bottom: 29px;
+}
+
+form .input-field {
+    position: relative;
+    height: 50px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.input-field input {
+    height: 100%;
+    width: 100%;
+    background: none;
+    outline: none;
+    font-size: 0.95rem;
+    padding: 0 15px;
+    border: 1px solid #717171;
+    border-radius: 3px;
+}
