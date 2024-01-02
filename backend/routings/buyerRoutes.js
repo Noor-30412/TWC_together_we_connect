@@ -37,7 +37,7 @@ router.post('/register', authMiddleware, async (req, res) => {
     res.status(201).json({ message: 'Buyer registration successful', buyerId: buyer._id });
   } catch (error) {
     console.error('Error during buyer registration:', error);
-    res.status(500).json({ message: 'Internal Server Error' });
+    res.status(500).json({ message: 'Internal Server Error', error: error.message });
   }
 });
 

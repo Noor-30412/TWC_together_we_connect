@@ -1,3 +1,4 @@
+// frontend/components/BuyerRegistration.js
 import React, { useState } from 'react';
 import axios from 'axios';
 
@@ -14,22 +15,94 @@ const BuyerRegistration = () => {
         establishmentYears: '',
         altMobileNumber: '',
         interestedItems: '',
-        termsAndConditions: '',
+        termsAndConditions: false,
         whatsappNumber: '',
         gstNumber: '',
         estimatedAnnualIncome: '',
     });
 
-    // Handle form field changes
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prevData) => ({
-            ...prevData,
-            [name]: value,
-        }));
-    };
+    const commonInterestedItems = [
+        'Electronics',
+        'Clothing',
+        'Home Appliances',
+        'Books',
+        'Toys',
+        'Furniture',
+        'Sporting Goods',
+        'Jewelry',
+        'Beauty Products',
+        'Automotive Parts',
+    ];
 
-    // Handle shipping address changes
+    const [errors, setErrors] = useState({});
+
+    const validateForm = () => {
+        const errors = {};
+
+        // Shop Name validation
+        if (!formData.shopName.trim()) {
+            errors.shopName = 'Shop Name is required';
+        }
+        if (!formData.termsAndConditions) {
+            errors.termsAndConditions = 'Terms and Conditions must be accepted';
+        }
+        // Establishment Years validation
+        if (!formData.establishmentYears.trim()) {
+            errors.establishmentYears = 'Establishment Years is required';
+        } else if (!/^\d+$/.test(formData.establishmentYears)) {
+            errors.establishmentYears = 'Establishment Years must be a valid number';
+        }
+
+        // Alt Mobile Number validation
+        if (!formData.altMobileNumber.trim()) {
+            errors.altMobileNumber = 'Alt Mobile Number is required';
+        } else if (!/^\d{10}$/.test(formData.altMobileNumber)) {
+            errors.altMobileNumber = 'Alt Mobile Number must be a 10-digit number';
+        }
+
+        // Pincode validation
+        if (!formData.shippingAddress.pincode.trim()) {
+            errors.pincode = 'Pincode is required';
+        } else if (!/^\d{6}$/.test(formData.shippingAddress.pincode)) {
+            errors.pincode = 'Pincode must be a 6-digit number';
+        }
+
+        // Interested Items validation
+        if (!formData.interestedItems.trim()) {
+            errors.interestedItems = 'Interested Items is required';
+        }
+
+        // WhatsApp Number validation
+        if (!formData.whatsappNumber.trim()) {
+            errors.whatsappNumber = 'WhatsApp Number is required';
+        } else if (!/^\d{10}$/.test(formData.whatsappNumber)) {
+            errors.whatsappNumber = 'WhatsApp Number must be a 10-digit number';
+        }
+
+        // GST Number validation
+        if (!formData.gstNumber.trim()) {
+            errors.gstNumber = 'GST Number is required';
+        } else if (!/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[0-9]{1}[Z]{1}[A-Z\d]{1}$/.test(formData.gstNumber)) {
+            errors.gstNumber = 'Invalid GST Number format';
+        }
+
+        console.log('Errors:', errors);
+        setErrors(errors);
+        return Object.keys(errors).length === 0;
+    };
+    const handleInputChange = (e) => {
+        const { name, value, type, checked } = e.target;
+    
+        // Handle checkbox differently
+        const inputValue = type === 'checkbox' ? checked : value;
+    
+        setFormData((prevData) => ({
+          ...prevData,
+          [name]: inputValue,
+        }));
+      };
+    
+
     const handleAddressChange = (e) => {
         const { name, value } = e.target;
         setFormData((prevData) => ({
@@ -41,13 +114,15 @@ const BuyerRegistration = () => {
         }));
     };
 
-    // Handle form submission
     const handleBuyerRegistration = async (e) => {
         e.preventDefault();
 
+        if (!validateForm()) {
+            return;
+        }
+
         try {
-            // Use the authenticated user's token for the request
-            const token = localStorage.getItem('token'); // Assuming you store the token in localStorage
+            const token = localStorage.getItem('token');
             const response = await axios.post('/api/buyers/register', formData, {
                 headers: {
                     Authorization: token,
@@ -64,7 +139,6 @@ const BuyerRegistration = () => {
         <div>
             <h2>Buyer Registration</h2>
             <form onSubmit={handleBuyerRegistration}>
-                {/* Shop Name */}
                 <label htmlFor="shopName">Shop Name:</label>
                 <input
                     type="text"
@@ -74,43 +148,8 @@ const BuyerRegistration = () => {
                     value={formData.shopName}
                     onChange={handleInputChange}
                 />
+                {errors.shopName && <p className="error">{errors.shopName}</p>}
 
-                {/* Shipping Address */}
-                <label htmlFor="shippingAddress">Shipping Address:</label>
-                <input
-                    type="text"
-                    id="pincode"
-                    name="pincode"
-                    placeholder="Pincode"
-                    value={formData.shippingAddress.pincode}
-                    onChange={handleAddressChange}
-                />
-                <input
-                    type="text"
-                    id="location"
-                    name="location"
-                    placeholder="Location"
-                    value={formData.shippingAddress.location}
-                    onChange={handleAddressChange}
-                />
-                <input
-                    type="text"
-                    id="city"
-                    name="city"
-                    placeholder="City"
-                    value={formData.shippingAddress.city}
-                    onChange={handleAddressChange}
-                />
-                <input
-                    type="text"
-                    id="landmark"
-                    name="landmark"
-                    placeholder="Landmark"
-                    value={formData.shippingAddress.landmark}
-                    onChange={handleAddressChange}
-                />
-
-                {/* Establishment Years */}
                 <label htmlFor="establishmentYears">Establishment Years:</label>
                 <input
                     type="text"
@@ -120,8 +159,8 @@ const BuyerRegistration = () => {
                     value={formData.establishmentYears}
                     onChange={handleInputChange}
                 />
+                {errors.establishmentYears && <p className="error">{errors.establishmentYears}</p>}
 
-                {/* Alt Mobile Number */}
                 <label htmlFor="altMobileNumber">Alt Mobile Number:</label>
                 <input
                     type="text"
@@ -131,30 +170,37 @@ const BuyerRegistration = () => {
                     value={formData.altMobileNumber}
                     onChange={handleInputChange}
                 />
+                {errors.altMobileNumber && <p className="error">{errors.altMobileNumber}</p>}
 
-                {/* Interested Items */}
-                <label htmlFor="interestedItems">Interested Items:</label>
+                <label htmlFor="pincode">Pincode:</label>
                 <input
                     type="text"
+                    id="pincode"
+                    name="pincode"
+                    placeholder="Pincode"
+                    value={formData.shippingAddress.pincode}
+                    onChange={handleAddressChange}
+                />
+                {errors.pincode && <p className="error">{errors.pincode}</p>}
+
+                <label htmlFor="interestedItems">Interested Items:</label>
+                <select
                     id="interestedItems"
                     name="interestedItems"
-                    placeholder="Interested Items"
                     value={formData.interestedItems}
                     onChange={handleInputChange}
-                />
+                >
+                    <option value="" disabled>
+                        Select Interested Items
+                    </option>
+                    {commonInterestedItems.map((item) => (
+                        <option key={item} value={item}>
+                            {item}
+                        </option>
+                    ))}
+                </select>
+                {errors.interestedItems && <p className="error">{errors.interestedItems}</p>}
 
-                {/* Terms And Conditions */}
-                <label htmlFor="termsAndConditions">Terms And Conditions:</label>
-                <input
-                    type="text"
-                    id="termsAndConditions"
-                    name="termsAndConditions"
-                    placeholder="Terms And Conditions"
-                    value={formData.termsAndConditions}
-                    onChange={handleInputChange}
-                />
-
-                {/* WhatsApp Number */}
                 <label htmlFor="whatsappNumber">WhatsApp Number:</label>
                 <input
                     type="text"
@@ -164,8 +210,8 @@ const BuyerRegistration = () => {
                     value={formData.whatsappNumber}
                     onChange={handleInputChange}
                 />
+                {errors.whatsappNumber && <p className="error">{errors.whatsappNumber}</p>}
 
-                {/* GST Number */}
                 <label htmlFor="gstNumber">GST Number:</label>
                 <input
                     type="text"
@@ -175,17 +221,17 @@ const BuyerRegistration = () => {
                     value={formData.gstNumber}
                     onChange={handleInputChange}
                 />
-
-                {/* Estimated Annual Income */}
-                <label htmlFor="estimatedAnnualIncome">Estimated Annual Income:</label>
-                <input
-                    type="text"
-                    id="estimatedAnnualIncome"
-                    name="estimatedAnnualIncome"
-                    placeholder="Estimated Annual Income"
-                    value={formData.estimatedAnnualIncome}
-                    onChange={handleInputChange}
-                />
+                {errors.gstNumber && <p className="error">{errors.gstNumber}</p>}
+                <label>
+          <input
+            type="checkbox"
+            name="termsAndConditions"
+            checked={formData.termsAndConditions}
+            onChange={handleInputChange}
+          />
+          Accept Terms and Conditions
+        </label>
+                {errors.termsAndConditions && <p className="error">{errors.termsAndConditions}</p>}
 
                 <button type="submit">Register as Buyer</button>
             </form>
