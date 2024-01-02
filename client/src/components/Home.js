@@ -2,6 +2,7 @@
 import React from 'react';
 import { useAuth } from '../context/AuthContext';
 import { Link, useNavigate } from 'react-router-dom';
+import Navbar from './navbar';
 
 const Home = () => {
     const { isAuthenticated, user, logout } = useAuth();
@@ -11,21 +12,28 @@ const Home = () => {
         logout();
         navigate('/home'); // Redirect to home page after logout
     };
-
+    const handleregisterseller = () => {
+        navigate('/register-seller');
+        
+    };
+    const handleregisterbuyer = () => {
+        navigate('/register-buyer');
+        
+    };
     const renderAuthButtons = () => {
         if (isAuthenticated) {
             return (
                 <>
-                    <button onClick={handleLogout}>Logout</button>
-                    <Link to="/register-buyer">Register Buyer Shop</Link>
-                    <Link to="/register-seller">Register Seller Shop</Link>
+                    <button onClick={handleLogout}>Logout</button><br></br>
+                    <button onClick={handleregisterseller}>Register seller shop</button><br></br>
+                    <button onClick={handleregisterbuyer}>Register buyer shop</button><br></br>
+                    
                 </>
             );
         } else {
             return (
                 <>
-                    <Link to="/login">Login</Link>
-                    <Link to="/signup">Signup</Link>
+                   
                 </>
             );
         }
@@ -33,7 +41,10 @@ const Home = () => {
 
     return (
         <div>
+        
+        <Navbar/>
             <h2>{isAuthenticated ? `Welcome ${user.username}` : 'Welcome Guest'}</h2>
+            
             {renderAuthButtons()}
         </div>
     );

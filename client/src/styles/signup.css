@@ -1,16 +1,3 @@
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 95vh;
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #514a4a00;
-    border: 1px solid #000000;
-    border-radius: 40px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
-}
 /* Importing Google font - Open Sans */
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap");
 
@@ -21,38 +8,28 @@
   font-family: "Open Sans", sans-serif;
 }
 
-
-
-.form-popup {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  z-index: 10;
-  width: 100%;
-  opacity: 0;
-  pointer-events: none;
-  max-width: 720px;
-  background: #fff;
-  border: 2px solid #fff;
-  transform: translate(-50%, -70%);
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #514a4a00;
+  border: 1px solid #000000;
+  border-radius: 40px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
 }
 
-.show-popup .form-popup {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translate(-50%, -50%);
-  transition: transform 0.3s ease, opacity 0.1s;
+.form-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.form-popup .close-btn {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  color: #878484;
-  cursor: pointer;
-}
-
-.form-box .form-details {
+.form-details {
   width: 100%;
   color: #fff;
   max-width: 330px;
@@ -63,31 +40,12 @@
   align-items: center;
 }
 
-.login .form-details {
-  padding: 0 40px;
-  background: url("https://drive.google.com/uc?export=view&id=1NveZlPElDf26KkyjOX7KBQ-K_LAdc0Jo");
-  background-position: center;
-  background-size: cover;
-}
-
-.signup .form-details {
-  padding: 0 20px;
-  background: url("https://drive.google.com/uc?export=view&id=1Ng9upyhuS0lG_wWyw-WPFAU--Uo_6xu4");
-  background-position: center;
-  background-size: cover;
-}
-
-.form-box .form-content {
+.form-content {
   width: 100%;
   padding: 35px;
 }
 
-.form-box h2 {
-  text-align: center;
-  margin-bottom: 29px;
-}
-
-form .input-field {
+.input-field {
   position: relative;
   height: 50px;
   width: 100%;
