@@ -2,7 +2,7 @@
 import React from 'react';
 import { useAuth } from '../context/AuthContext';
 import { Link, useNavigate } from 'react-router-dom';
-import Navbar from './navbar';
+
 
 const Home = () => {
     const { isAuthenticated, user, logout } = useAuth();
@@ -42,7 +42,7 @@ const Home = () => {
     return (
         <div>
         
-        <Navbar/>
+        
             <h2>{isAuthenticated ? `Welcome ${user.username}` : 'Welcome Guest'}</h2>
             
             {renderAuthButtons()}
