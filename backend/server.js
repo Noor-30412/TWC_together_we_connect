@@ -13,6 +13,7 @@ const bodyParser = require('body-parser');
 const multer = require('multer');
 const path = require('path');
 const buyerDocumentRoutes = require('./routings/buyerDocumentRoutes');
+const sellerDocumentRoutes = require('./routings/sellerDocumentRoutes');
 
 dotenv.config();
 
@@ -61,7 +62,7 @@ app.use('/api', protectedRoutes);
 app.use('/api/buyers', buyerRoutes);
 app.use('/api/sellers', sellerRoutes);
 app.use('/api/buyer', buyerDocumentRoutes);
-
+app.use('/api/seller', sellerDocumentRoutes);
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
