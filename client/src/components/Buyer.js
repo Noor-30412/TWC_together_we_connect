@@ -137,6 +137,7 @@ const BuyerRegistration = () => {
 
     return (
         <div>
+            <div className='container'>
             <h2>Buyer Registration</h2>
             <form onSubmit={handleBuyerRegistration}>
                 <label htmlFor="shopName">Shop Name:</label>
@@ -235,6 +236,7 @@ const BuyerRegistration = () => {
 
                 <button type="submit">Register as Buyer</button>
             </form>
+        </div>
         </div>
     );
 };
