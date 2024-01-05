@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
-const Buyer = require('../models/Buyer');
-const BuyerDocuments = require('../models/BuyerDocuments');
+const Seller = require('../models/Seller');
+const SellerDocuments = require('../models/SellerDocuments');
 const authMiddleware = require('../middleware/authMiddleware');
 const uploadMiddleware = require('../middleware/upload');
 const mimeTypes = require('mime-types');
-const fs = require('fs').promises;
+const fs = require('fs').promises; // Import the fs.promises module
 
 // Endpoint for document uploads
 router.post(
@@ -30,15 +30,15 @@ router.post(
                 return res.status(404).json({ message: 'User not found' });
             }
 
-            const buyer = await Buyer.findOne({ userId: user._id });
-            if (!buyer) {
-                console.error('Buyer profile not found');
-                return res.status(404).json({ message: 'Buyer profile not found' });
+            const seller = await Seller.findOne({ userId: user._id });
+            if (!seller) {
+                console.error('Seller profile not found');
+                return res.status(404).json({ message: 'Seller profile not found' });
             }
 
-            let buyerDocuments = await BuyerDocuments.findOne({ buyerId: buyer._id });
-            if (!buyerDocuments) {
-                buyerDocuments = new BuyerDocuments({ buyerId: buyer._id });
+            let sellerDocuments = await SellerDocuments.findOne({ sellerId: seller._id });
+            if (!sellerDocuments) {
+                sellerDocuments = new SellerDocuments({ sellerId: seller._id });
             }
 
             // Define allowed mime types for each document type
@@ -51,7 +51,7 @@ router.post(
             const allowedOutsidePhotoFormats = ['image/jpeg', 'image/png', 'application/pdf'];
             // Add other document types
 
-            buyerDocuments.documents = {
+            sellerDocuments.documents = {
                 aadhar: validateAndSaveFile(req.files['aadhar'][0], 'aadhar', allowedAadharFormats),
                 panCard: validateAndSaveFile(req.files['panCard'][0], 'panCard', allowedPanCardFormats),
                 addressBill: validateAndSaveFile(req.files['addressBill'][0], 'addressBill', allowedAddressBillFormats),
@@ -64,8 +64,8 @@ router.post(
                 // Add other document types
             };
 
-            if (areAllDocumentsUploaded(buyerDocuments.documents)) {
-                await buyerDocuments.save();
+            if (areAllDocumentsUploaded(sellerDocuments.documents)) {
+                await sellerDocuments.save();
                 res.status(200).json({ message: 'Documents uploaded successfully' });
             } else {
                 // Delete the uploaded files if not all documents are uploaded
@@ -79,8 +79,8 @@ router.post(
             if (req.files) {
                 await deleteUploadedFiles(req.files);
             }
-            console.error('Internal Server Error from buyerDocumentRoutes');
-            res.status(500).json({ message: 'Internal Server Error from buyerDocumentRoutes' });
+            console.error('Internal Server Error from sellerDocumentRoutes');
+            res.status(500).json({ message: 'Internal Server Error from sellerDocumentRoutes' });
         }
     }
 );
