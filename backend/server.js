@@ -1,3 +1,4 @@
+//server.js
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -8,23 +9,29 @@ const authRoutes = require('./routings/authRoutes');
 const protectedRoutes = require('./routings/protectedRoutes');
 const buyerRoutes = require('./routings/buyerRoutes');
 const sellerRoutes = require('./routings/sellerRoutes');
-// const emailVerificationRoutes = require('./routings/emailVerificationRoutes');
+const bodyParser = require('body-parser');
+const multer = require('multer');
+const path = require('path');
+const buyerDocumentRoutes = require('./routings/buyerDocumentRoutes');
 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// Configure multer for handling file uploads
+const storage = multer.memoryStorage();
+const uploadMiddleware = multer({ storage: storage });
+
 // Middleware
 app.use(cors());
 app.use(express.json());
-
-// Use express-session middleware
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(session({
-  secret: process.env.SESSION_SECRET, // Set a secure session secret
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: false }, // Set secure to true in production with HTTPS
+  cookie: { secure: false },
 }));
 
 // MongoDB Connection
@@ -49,13 +56,30 @@ connection.once('open', () => {
 
 // Routes
 app.use('/api/users', userRoutes);
-app.use('/api/auth', authRoutes); // Use a different route for auth
+app.use('/api/auth', authRoutes);
 app.use('/api', protectedRoutes);
 app.use('/api/buyers', buyerRoutes);
 app.use('/api/sellers', sellerRoutes);
-// app.use('/api/auth/email-verification', emailVerificationRoutes);
+app.use('/api/buyer', buyerDocumentRoutes);
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Something went wrong in Middleware!');
+});
 
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on port: ${PORT}`);
 });
+
+// Standalone error-handling middleware
+app.use((err, req, res, next) => {
+  console.error('Unexpected error:', err);
+  res.status(500).json({ error: 'Internal Server Error' });
+});
+
+// Start the server
+// app.listen(PORT, () => {
+//   console.log(`Server is running on port: ${PORT}`);
+// });

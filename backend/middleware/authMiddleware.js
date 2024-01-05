@@ -12,13 +12,16 @@ const authMiddleware = async (req, res, next) => {
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
         console.log('Decoded user:', decoded);
+
         const user = await User.findById(decoded.userId);
 
         if (!user) {
+            console.log('User not found');
             return res.status(401).json({ message: 'Invalid user' });
         }
 
         req.user = user; // Attach the user object to the request
+        console.log('User attached to request:', user);
         next(); // Proceed to the next middleware or route handler
     } catch (error) {
         console.error('Error in authentication middleware:', error);
