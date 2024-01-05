@@ -2,6 +2,7 @@
 import React from 'react';
 import { useAuth } from '../context/AuthContext';
 import { Link, useNavigate } from 'react-router-dom';
+import Navbar from '../components/navbar'; 
 
 
 const Home = () => {
@@ -41,13 +42,10 @@ const Home = () => {
 
     return (
         <div>
-<<<<<<< HEAD
                  <Navbar   isAuthenticated={isAuthenticated} />
 
-=======
         
         
->>>>>>> 809db6227d330d2b2182f728a8471df21cc3dbc7
             <h2>{isAuthenticated ? `Welcome ${user.username}` : 'Welcome Guest'}</h2>
             
             
