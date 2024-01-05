@@ -50,7 +50,7 @@ const Home = () => {
 
             {isAuthenticated && (
                 <>
-                    <button onClick={handleLogout}>Logout</button>
+
                     <br />
                     <button onClick={handleRegisterSeller}>Register seller shop</button>
                     <br />
