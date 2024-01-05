@@ -2,7 +2,7 @@
 import React from 'react';
 import { useAuth } from '../context/AuthContext';
 import { Link, useNavigate } from 'react-router-dom';
-import Navbar from '../components/navbar'; 
+import Navbar from '../components/navbar';
 
 
 const Home = () => {
@@ -13,13 +13,13 @@ const Home = () => {
         logout();
         navigate('/home'); // Redirect to home page after logout
     };
-    const handleregisterseller = () => {
+    const handleRegisterSeller = () => {
         navigate('/register-seller');
-        
+
     };
-    const handleregisterbuyer = () => {
+    const handleRegisterBuyer = () => {
         navigate('/register-buyer');
-        
+
     };
     /*const renderAuthButtons = () => {
         if (isAuthenticated) {
@@ -42,13 +42,22 @@ const Home = () => {
 
     return (
         <div>
-                 <Navbar   isAuthenticated={isAuthenticated} />
+            <Navbar isAuthenticated={isAuthenticated} />
 
-        
-        
+
+
             <h2>{isAuthenticated ? `Welcome ${user.username}` : 'Welcome Guest'}</h2>
-            
-            
+
+            {isAuthenticated && (
+                <>
+                    <button onClick={handleLogout}>Logout</button>
+                    <br />
+                    <button onClick={handleRegisterSeller}>Register seller shop</button>
+                    <br />
+                    <button onClick={handleRegisterBuyer}>Register buyer shop</button>
+                    <br />
+                </>
+            )}
         </div>
     );
 };
