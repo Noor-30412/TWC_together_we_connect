@@ -34,8 +34,6 @@ router.post('/register', authMiddleware, async (req, res) => {
       estimatedAnnualIncome,
     });
 
-    await seller.save();
-
     res.status(201).json({ message: 'Seller registration successful', sellerId: seller._id });
   } catch (error) {
     console.error('Error during seller registration:', error);

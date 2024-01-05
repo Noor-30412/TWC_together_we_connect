@@ -14,7 +14,6 @@ const buyerDocumentsSchema = new mongoose.Schema({
         outside: String,
     },
 });
-
 const BuyerDocuments = mongoose.model('BuyerDocuments', buyerDocumentsSchema);
 
 module.exports = BuyerDocuments;

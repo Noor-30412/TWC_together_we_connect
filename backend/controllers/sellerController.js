@@ -1,5 +1,20 @@
 // controllers/sellerController.js
 const Seller = require('../models/Seller');
+const SellerDocuments = require('../models/SellerDocuments');
+const mimeTypes = require('mime-types');
+
+// Function to check if all required documents are uploaded
+function areAllDocumentsUploaded(documents) {
+    return (
+        documents.aadhar &&
+        documents.panCard &&
+        documents.addressBill &&
+        documents.photo &&
+        (documents.visitingCard || true) && // Visiting card is optional
+        documents.shopPhotos.inside &&
+        documents.shopPhotos.outside
+    );
+}
 
 // Endpoint to handle document uploads
 exports.uploadDocuments = async (req, res) => {
@@ -20,54 +35,67 @@ exports.uploadDocuments = async (req, res) => {
         if (req.files) {
             // Save Aadhar card
             if (req.files.aadhar) {
-                const aadhar = req.files.aadhar[0];
-                seller.documents.aadhar = aadhar.location || aadhar.path; // Assuming file.location for AWS S3 or file.path for local storage
+                validateAndSaveFile(req.files.aadhar[0], 'aadhar', seller.documents, ['image/jpeg', 'image/png']);
             }
 
             // Save PAN card
             if (req.files.panCard) {
-                const panCard = req.files.panCard[0];
-                seller.documents.panCard = panCard.location || panCard.path;
+                validateAndSaveFile(req.files.panCard[0], 'panCard', seller.documents, ['image/jpeg', 'image/png']);
             }
 
             // Save Address Bill
             if (req.files.addressBill) {
-                const addressBill = req.files.addressBill[0];
-                seller.documents.addressBill = addressBill.location || addressBill.path;
+                validateAndSaveFile(req.files.addressBill[0], 'addressBill', seller.documents, ['image/jpeg', 'image/png', 'application/pdf']);
             }
 
             // Save Photo
             if (req.files.photo) {
-                const photo = req.files.photo[0];
-                seller.documents.photo = photo.location || photo.path;
+                validateAndSaveFile(req.files.photo[0], 'photo', seller.documents, ['image/jpeg', 'image/png']);
             }
 
-            // Save Visiting Card
+            // Save Visiting Card (optional)
             if (req.files.visitingCard) {
-                const visitingCard = req.files.visitingCard[0];
-                seller.documents.visitingCard = visitingCard.location || visitingCard.path;
+                validateAndSaveFile(req.files.visitingCard[0], 'visitingCard', seller.documents, ['application/pdf'], true);
             }
 
             // Save Shop Photos
             if (req.files.shopPhotosInside) {
-                const insidePhoto = req.files.shopPhotosInside[0];
-                seller.documents.shopPhotos.inside = insidePhoto.location || insidePhoto.path;
+                validateAndSaveFile(req.files.shopPhotosInside[0], 'inside', seller.documents.shopPhotos, ['image/jpeg', 'image/png', 'application/pdf']);
             }
 
             if (req.files.shopPhotosOutside) {
-                const outsidePhoto = req.files.shopPhotosOutside[0];
-                seller.documents.shopPhotos.outside = outsidePhoto.location || outsidePhoto.path;
+                validateAndSaveFile(req.files.shopPhotosOutside[0], 'outside', seller.documents.shopPhotos, ['image/jpeg', 'image/png', 'application/pdf']);
             }
         }
 
-        // Save the updated seller model
-        await seller.save();
-
-        res.status(200).json({ message: 'Documents uploaded successfully' });
+        // Check if all required documents are uploaded
+        if (areAllDocumentsUploaded(seller.documents)) {
+            // Save the updated seller model
+            await seller.save();
+            res.status(200).json({ message: 'Documents uploaded successfully' });
+        } else {
+            res.status(400).json({ message: 'All required documents must be uploaded' });
+        }
     } catch (error) {
         console.error('Document upload error:', error);
-        res.status(500).json({ message: 'Internal Server Error from seller controller' });
+        res.status(500).json({ message: 'Internal Server Error from seller controller', error: error.message });
     }
 };
 
-// Add other seller controller functions as needed
+// Function to validate and save a specific document field
+// Function to validate and save a specific document field
+function validateAndSaveFile(file, fieldName, target, allowedMimeTypes, isOptional = false) {
+    // Check if the file is provided for required fields
+    if (!isOptional && (!file || !file.path)) {
+        throw new Error(`Missing required file: ${fieldName}`);
+    }
+
+    // Add additional validations here, e.g., file format checks
+    const detectedMimeType = mimeTypes.lookup(file.path);
+    if (!allowedMimeTypes.includes(detectedMimeType)) {
+        throw new Error(`Invalid ${fieldName} format. Detected: ${detectedMimeType}. Allowed: ${allowedMimeTypes.join(', ')}`);
+    }
+
+    // Save the file path to the target object
+    target[fieldName] = file.location || file.path;
+}
