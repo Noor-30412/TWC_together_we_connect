@@ -20,7 +20,7 @@ const Home = () => {
         navigate('/register-buyer');
         
     };
-    const renderAuthButtons = () => {
+    /*const renderAuthButtons = () => {
         if (isAuthenticated) {
             return (
                 <>
@@ -37,15 +37,15 @@ const Home = () => {
                 </>
             );
         }
-    };
+    };*/
 
     return (
         <div>
-        
-        <Navbar/>
+                 <Navbar   isAuthenticated={isAuthenticated} />
+
             <h2>{isAuthenticated ? `Welcome ${user.username}` : 'Welcome Guest'}</h2>
             
-            {renderAuthButtons()}
+            
         </div>
     );
 };
