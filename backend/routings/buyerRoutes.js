@@ -1,4 +1,3 @@
-// routes/buyerRoutes.js
 const express = require('express');
 const router = express.Router();
 const authMiddleware = require('../middleware/authMiddleware');
@@ -13,25 +12,35 @@ router.post('/register', authMiddleware, async (req, res) => {
       establishmentYears,
       altMobileNumber,
       interestedItems,
-      termsAndConditions,
+      
       whatsappNumber,
       gstNumber,
       estimatedAnnualIncome,
+      termsAndConditions,
     } = req.body;
 
+    // Check if a buyer with the same user ID already exists
+    const existingBuyer = await Buyer.findOne({ userId: req.user._id });
+    if (existingBuyer) {
+      return res.status(400).json({ message: 'Buyer account already exists' });
+    }
+
+    // Create a new buyer instance
     const buyer = new Buyer({
-      userId: req.user._id, // Assuming you have a user object in the request (from authentication middleware)
+      userId: req.user._id,
       shopName,
       shippingAddress,
       establishmentYears,
       altMobileNumber,
       interestedItems,
-      termsAndConditions,
+      
       whatsappNumber,
       gstNumber,
       estimatedAnnualIncome,
+      termsAndConditions,
     });
 
+    // Save the buyer to the database
     await buyer.save();
 
     res.status(201).json({ message: 'Buyer registration successful', buyerId: buyer._id });
