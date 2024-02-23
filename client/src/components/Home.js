@@ -1,65 +1,51 @@
-// Home.js
-import React from 'react';
-import { useAuth } from '../context/AuthContext';
-import { Link, useNavigate } from 'react-router-dom';
-import Navbar from '../components/navbar';
-
+import React from 'react'
+import { useAuth } from '../context/AuthContext'
+import { Link, useNavigate } from 'react-router-dom'
+import Navbar from '../components/navbar'
+import '../styles/home.css'
 
 const Home = () => {
-    const { isAuthenticated, user, logout } = useAuth();
-    const navigate = useNavigate();
+    const { isAuthenticated, user, logout } = useAuth()
+    const navigate = useNavigate()
 
     const handleLogout = () => {
-        logout();
-        navigate('/home'); // Redirect to home page after logout
-    };
+        logout()
+        navigate('/login')
+    }
+
     const handleRegisterSeller = () => {
-        navigate('/register-seller');
+        navigate('/register-seller')
+    }
 
-    };
     const handleRegisterBuyer = () => {
-        navigate('/register-buyer');
+        navigate('/register-buyer')
+    }
 
-    };
-    /*const renderAuthButtons = () => {
+    const renderAuthButtons = () => {
         if (isAuthenticated) {
             return (
-                <>
-                    <button onClick={handleLogout}>Logout</button><br></br>
-                    <button onClick={handleregisterseller}>Register seller shop</button><br></br>
-                    <button onClick={handleregisterbuyer}>Register buyer shop</button><br></br>
-                    
-                </>
-            );
-        } else {
-            return (
-                <>
-                   
-                </>
-            );
+                <div className="auth-buttons">
+                    <button onClick={handleLogout}>Logout</button>
+                </div>
+            )
         }
-    };*/
+    }
 
     return (
-        <div>
-            <Navbar isAuthenticated={isAuthenticated} />
-
-
-
-            <h2>{isAuthenticated ? `Welcome ${user.username}` : 'Welcome Guest'}</h2>
-
+        <div className="home-container">
+            <Navbar isAuthenticated={isAuthenticated} user={user} />
+            <h2 className="welcome-message">
+                {isAuthenticated ? `Welcome, ${user.username}` : 'Welcome Guest'}
+            </h2>
             {isAuthenticated && (
-                <>
-
-                    <br />
+                <div className="seller-buyer-buttons">
                     <button onClick={handleRegisterSeller}>Register seller shop</button>
-                    <br />
                     <button onClick={handleRegisterBuyer}>Register buyer shop</button>
-                    <br />
-                </>
+                </div>
             )}
+            {renderAuthButtons()}
         </div>
-    );
-};
+    )
+}
 
-export default Home;
+export default Home
