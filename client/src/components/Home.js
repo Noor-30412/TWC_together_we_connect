@@ -1,4 +1,3 @@
-// Home.js
 import React from 'react'
 import { useAuth } from '../context/AuthContext'
 import { Link, useNavigate } from 'react-router-dom'
@@ -31,9 +30,46 @@ const Home = () => {
                 switchToBuyerRegistration={switchToBuyerRegistration}
                 switchToSellerRegistration={switchToSellerRegistration}
             />
-            <h2 className="welcome-message">
-                {isAuthenticated ? `Welcome, ${user.username}` : 'Welcome Guest'}
-            </h2>
+
+            <div className="banner-margin" >
+                <h1>Welcome to Our Ecommerce Website {user.username}!</h1>
+                <p>Discover great deals on various products.</p>
+            </div>
+
+
+            <div className="product-categories">
+                <h2>Product Categories</h2>
+                <ul>
+                    <li>
+                        <Link to="/category/electronics">Electronics</Link>
+                    </li>
+                    <li>
+                        <Link to="/category/fashion">Fashion</Link>
+                    </li>
+                    <li>
+                        <Link to="/category/home-appliances">Home Appliances</Link>
+                    </li>
+                    {/* Add more categories as needed */}
+                </ul>
+            </div>
+
+            <div className="featured-products">
+                <h2>Featured Products</h2>
+                {/* Render featured products here */}
+            </div>
+
+            <div className="shopping-cart-preview">
+                <h2>Shopping Cart</h2>
+                {/* Render shopping cart preview here */}
+            </div>
+
+            {/* <div className="newsletter-signup">
+                <h2>Sign Up for Our Newsletter</h2>
+                <form>
+                    <input type="email" placeholder="Enter your email" />
+                    <button type="submit">Sign Up</button>
+                </form>
+            </div> */}
         </div>
     )
 }

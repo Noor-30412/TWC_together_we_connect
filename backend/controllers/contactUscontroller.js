@@ -26,7 +26,9 @@ exports.createContactUs = async (req, res) => {
             from: process.env.EMAIL_USERNAME,
             to: senderEmail,
             subject: 'Thank you for your query',
+
             text: `Your query with ID ${contactUs.queryId} has been received. We will get back to you soon.`
+
         };
 
         await transporter.sendMail(mailOptions);
