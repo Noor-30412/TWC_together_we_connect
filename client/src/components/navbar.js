@@ -6,24 +6,27 @@ import { Link, useNavigate } from 'react-router-dom';
 const Navbar = () => {
   const [clicked, setClicked] = useState(false);
   const [currentPage, setCurrentPage] = useState('home');
-  const { isAuthenticated, islog } = useAuth();
-  const navigate = useNavigate()
+  const { isAuthenticated, islog, logout } = useAuth(); // Destructure the logout function from useAuth
+  const navigate = useNavigate();
   const switchToBuyerRegistration = () => {
-    navigate('/register-buyer')
-  }
+    navigate('/register-buyer');
+  };
 
   const switchToSellerRegistration = () => {
-    navigate('/register-seller')
-  }
+    navigate('/register-seller');
+  };
   const handleClick = (page) => {
     setClicked(!clicked);
     setCurrentPage(page);
   };
   const handleLogout = () => {
+    // Clear local storage and authentication state
+    localStorage.removeItem('token');
+    logout();
 
-    localStorage.clear()
-    navigate('/home')
-  }
+    // Redirect user to the home page
+    navigate('/home');
+  };
   return (
     <nav>
       <a href="index.html">
