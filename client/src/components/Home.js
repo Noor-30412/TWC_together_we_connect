@@ -2,7 +2,7 @@
 import React from 'react';
 import { useAuth } from '../context/AuthContext';
 import { Link, useNavigate } from 'react-router-dom';
-import Navbar from '../components/navbar';
+import Navbar from '../components/navbar'; // Correct the import statement
 
 const Home = () => {
   const { isAuthenticated, user, logout } = useAuth();

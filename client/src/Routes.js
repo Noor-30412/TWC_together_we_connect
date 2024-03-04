@@ -7,7 +7,7 @@ import Login from './components/login';
 import About from './components/About'; // Import the About component
 import RegisterBuyer from './components/Buyer';
 import RegisterSeller from './components/Seller';
-import Signup from './components/signup';
+import Signup from './components/signUp';
 
 const AppRoutes = () => {
   return (
