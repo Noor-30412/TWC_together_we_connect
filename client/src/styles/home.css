@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 50px;
+    margin-top: 60px;
 }
 
 .welcome-message {
@@ -38,6 +38,8 @@ button {
 button:hover {
     background-color: #45a049;
 }
+
 .banner-margin {
-    margin-top: 2rem; /* Adjust the value as needed */
-  }
+    margin-top: 2rem;
+    /* Adjust the value as needed */
+}

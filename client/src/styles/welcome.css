@@ -1,0 +1,111 @@
+/* styles.css */
+
+body {
+    background-color: #e98383;
+    /* Light gray background for the entire page */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    width: 300px;
+    background: #97d6d5;
+    /* White background for the container */
+    border-radius: 10px;
+    /* Rounded corners */
+    padding: 20px;
+    /* Add some padding */
+    box-shadow: 0 4px 8px rgba(204, 246, 241, 0.1);
+    /* Add shadow */
+    position: relative;
+    /* Position for ribbon */
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input-group input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    /* Increase input padding */
+    border: 1px solid #ccc;
+    /* Add border */
+    border-radius: 5px;
+    /* Rounded input */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    /* Add input shadow */
+    outline: none;
+    /* Remove default focus outline */
+}
+
+.btn {
+    background: linear-gradient(to right, #11998e, #38ef7d);
+    /* Gradient background */
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    /* Smooth transition */
+}
+
+.btn:hover {
+    background: linear-gradient(to right, #38ef7d, #11998e);
+    /* Gradient hover effect */
+}
+
+/* Ribbon animation styles */
+.ribbon {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: #38ef7d;
+    /* Success color */
+    color: #fff;
+    padding: 5px 15px;
+    border-radius: 0 0 0 15px;
+    transform: rotate(45deg);
+    animation: ribbon 1s ease-in-out forwards;
+    z-index: 1;
+    /* Ensure it's above the container */
+}
+
+@keyframes ribbon {
+    0% {
+        transform: rotate(45deg) translateX(100%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: rotate(45deg) translateX(0%);
+        opacity: 1;
+    }
+}
+
+.success {
+    animation: pulse 0.5s ease-in-out;
+    /* Apply pulse animation on success */
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
