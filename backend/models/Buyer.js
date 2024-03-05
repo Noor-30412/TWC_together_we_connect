@@ -1,4 +1,3 @@
-// models/Buyer.js
 const mongoose = require('mongoose');
 
 const buyerSchema = new mongoose.Schema({
@@ -13,7 +12,7 @@ const buyerSchema = new mongoose.Schema({
   establishmentYears: { type: Number, required: true, min: 1 },
   altMobileNumber: { type: String, required: true, match: /^\d{10}$/ },
   interestedItems: { type: String, required: true },
-  termsAndConditions: { type: Boolean, required: true },// Assuming it will be a checkbox (true/false)
+  
   whatsappNumber: { type: String, required: true, match: /^\d{10}$/ },
   gstNumber: {
     type: String,
@@ -21,6 +20,7 @@ const buyerSchema = new mongoose.Schema({
     match: /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[0-9]{1}[Z]{1}[A-Z\d]{1}$/,
   },
   estimatedAnnualIncome: { type: String }, // You can add specific validation for this field if needed
+  termsAndConditions: { type: Boolean, required: true },// Assuming it will be a checkbox (true/false)
 });
 
 // Custom validation for interestedItems

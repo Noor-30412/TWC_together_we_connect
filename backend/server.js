@@ -14,6 +14,8 @@ const multer = require('multer');
 const path = require('path');
 const buyerDocumentRoutes = require('./routings/buyerDocumentRoutes');
 const sellerDocumentRoutes = require('./routings/sellerDocumentRoutes');
+const contactUsRoutes = require('./routings/contactRoutes');
+const welcome = require('./routings/welcomeRoutes');
 
 dotenv.config();
 
@@ -63,6 +65,9 @@ app.use('/api/buyers', buyerRoutes);
 app.use('/api/sellers', sellerRoutes);
 app.use('/api/buyer', buyerDocumentRoutes);
 app.use('/api/seller', sellerDocumentRoutes);
+app.use('/api/contact',contactUsRoutes);
+app.use('/admin/',welcome);
+
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
@@ -80,7 +85,4 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: 'Internal Server Error' });
 });
 
-// Start the server
-// app.listen(PORT, () => {
-//   console.log(`Server is running on port: ${PORT}`);
-// });
+

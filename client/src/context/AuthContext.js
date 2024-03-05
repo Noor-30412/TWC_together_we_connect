@@ -1,5 +1,5 @@
 // AuthContext.js
-import React, { createContext, useContext, useReducer } from 'react';
+import React, { createContext, useContext, useEffect, useReducer, useState } from 'react';
 
 const AuthContext = createContext();
 
@@ -29,17 +29,25 @@ const authReducer = (state, action) => {
 
 const AuthProvider = ({ children }) => {
     const [state, dispatch] = useReducer(authReducer, initialState);
-
+    const [islog, setislog] = useState(false)
     const login = (user) => {
         dispatch({ type: 'LOGIN', payload: user });
+        setislog(true)
     };
 
     const logout = () => {
+
         dispatch({ type: 'LOGOUT' });
+        setislog(false)
     };
 
+    useEffect(() => {
+        if (localStorage.getItem('token')) setislog(true)
+        else setislog(false)
+    }, [islog])
+
     return (
-        <AuthContext.Provider value={{ ...state, login, logout }}>
+        <AuthContext.Provider value={{ ...state, login, logout, islog }}>
             {children}
         </AuthContext.Provider>
     );
