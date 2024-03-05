@@ -8,7 +8,7 @@ import About from './components/About'; // Import the About component
 import RegisterBuyer from './components/Buyer';
 import RegisterSeller from './components/Seller';
 import Signup from './components/signUp';
-import Navbar from './components/navbar';
+import WelcomeForm from './components/Welcome';
 
 const AppRoutes = () => {
   return (
@@ -22,6 +22,7 @@ const AppRoutes = () => {
         <Route path="/signup" element={<Signup />} />
         <Route path="/register-buyer" element={<RegisterBuyer />} />
         <Route path="/register-seller" element={<RegisterSeller />} />
+        <Route path="/welcome" element={<WelcomeForm />} />
       </Routes>
     </>
   );

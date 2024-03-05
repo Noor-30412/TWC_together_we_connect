@@ -3,12 +3,10 @@ const nodemailer = require('nodemailer');
 
 exports.createWelcomeMail = async (req, res) => {
     try {
-        const { senderEmail, category, description } = req.body;
+        const { senderEmail } = req.body;
 
         const welcomeMail = new WelcomeMail({
             senderEmail,
-            category,
-            description
         });
 
         await welcomeMail.save();
@@ -25,9 +23,9 @@ exports.createWelcomeMail = async (req, res) => {
         const mailOptions = {
             from: process.env.EMAIL_USERNAME,
             to: senderEmail,
-            
+
             subject: 'The First Employees of TWC - Together We Connect',
-            
+
             text: `
             Dear New Team Member,
 
