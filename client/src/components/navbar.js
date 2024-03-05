@@ -60,7 +60,7 @@ const Navbar = () => {
             <Link to="/about">About Us</Link>
           </li>
           <li>
-            <Link to="index.html">Contact Us</Link>
+            <Link to="/contact">Contact Us</Link>
           </li>
           <li>
             <Link to="index.html">Product</Link>

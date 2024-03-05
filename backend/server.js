@@ -65,8 +65,8 @@ app.use('/api/buyers', buyerRoutes);
 app.use('/api/sellers', sellerRoutes);
 app.use('/api/buyer', buyerDocumentRoutes);
 app.use('/api/seller', sellerDocumentRoutes);
-app.use('/api/contact',contactUsRoutes);
-app.use('/admin/',welcome);
+app.use('/api/contact', contactUsRoutes);
+app.use('/admin/', welcome);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
