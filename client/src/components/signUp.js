@@ -110,7 +110,7 @@ const Signup = () => {
             />
           </div>
           <div className="d-grid gap-2 mt-3">
-            <button type="button" onClick={handleSignup} className="btn btn-primary">
+            <button type="button" onClick={handleSignup} className="btn-primary">
               Signup
             </button>
           </div>

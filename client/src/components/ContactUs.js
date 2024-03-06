@@ -3,6 +3,9 @@ import '../styles/contactus.css';
 import Navbar from '../components/navbar';
 import axios from 'axios'; // Import axios for making HTTP requests
 
+// Define the background image URL
+const backgroundImageUrl = 'https://images.unsplash.com/photo-1624137308703-e1da1ca881df?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
+
 const ContactUs = () => {
     // State variables to store form data
     const [email, setEmail] = useState('');
@@ -34,7 +37,7 @@ const ContactUs = () => {
     return (
         <div>
             <Navbar />
-            <div className="contact-page">
+            <div className="contact-page" style={{ backgroundImage: `url(${backgroundImageUrl})` }}>
                 <form className="contact-form" onSubmit={handleSubmit}>
                     <h2>Contact Us</h2>
                     <p>
@@ -62,9 +65,9 @@ const ContactUs = () => {
                         <textarea id="message" name="message" rows="4" placeholder="Enter Message Here" required value={message} onChange={(e) => setMessage(e.target.value)}></textarea>
                     </div>
                     <button type="submit">Submit</button>
+                    {successMessage && <div className="success-message">{successMessage}</div>}
+                    {errorMessage && <div className="error-message">{errorMessage}</div>}
                 </form>
-                {successMessage && <div className="success-message">{successMessage}</div>}
-                {errorMessage && <div className="error-message">{errorMessage}</div>}
             </div>
         </div>
     );

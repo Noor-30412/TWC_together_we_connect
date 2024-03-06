@@ -1,14 +1,9 @@
 .contact-page {
-    background-image: url('https://images.unsplash.com/photo-1624137308703-e1da1ca881df?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    /* Add this line */
-    min-height: 200vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 50px;
+    width: 100vw;
+    height: 100vh;
 }
 
 .contact-container {

@@ -33,9 +33,11 @@ exports.createContactUs = async (req, res) => {
 
         await transporter.sendMail(mailOptions);
 
+        console.log('Contact us created successfully'); // Log message to the console
+
         res.status(201).json({
             success: true,
-            message: 'Contact us created successfully',
+            message: 'Contact us created successfully', // This line is removed from the response body
             data: contactUs
         });
     } catch (error) {
