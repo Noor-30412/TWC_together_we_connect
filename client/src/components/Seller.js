@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import '../styles/sellerreg.css';
+import { FaShopify} from 'react-icons/fa';
 //HELLO
 import Navbar from '../components/navbar'
 const SellerRegistration = () => {
@@ -130,7 +131,7 @@ const SellerRegistration = () => {
   }; return (
     <div><Navbar />
       <div className="SellerRegistration">
-        <h2>Seller Registration</h2>
+        <h2><FaShopify />Seller Registration</h2>
         <form onSubmit={handleSellerRegistration}>
           <div className="form-group">
             <label htmlFor="shopName"><i className="fas fa-store-alt"></i> Shop Name:</label>
