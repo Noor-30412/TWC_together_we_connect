@@ -4,7 +4,7 @@ import '../styles/sellerreg.css';
 //HELLO
 import Navbar from '../components/navbar'
 const SellerRegistration = () => {
-  
+
   const [formData, setFormData] = useState({
     shopName: '',
     typeOfItemsSold: '',
@@ -127,172 +127,172 @@ const SellerRegistration = () => {
     } catch (error) {
       console.error('Seller registration error:', error.response.data.message);
     }
-  };return (
-    <div><Navbar/>
-    <div className="SellerRegistration">
-      <h2>Seller Registration</h2>
-      <form onSubmit={handleSellerRegistration}>
-        <div className="form-group">
-          <label htmlFor="shopName"><i className="fas fa-store-alt"></i> Shop Name:</label>
-          <input
-            type="text"
-            id="shopName"
-            name="shopName"
-            placeholder="Shop Name"
-            value={formData.shopName}
-            onChange={handleInputChange}
-          />
-          {errors.shopName && <p className="error">{errors.shopName}</p>}
-        </div>
+  }; return (
+    <div><Navbar />
+      <div className="SellerRegistration">
+        <h2>Seller Registration</h2>
+        <form onSubmit={handleSellerRegistration}>
+          <div className="form-group">
+            <label htmlFor="shopName"><i className="fas fa-store-alt"></i> Shop Name:</label>
+            <input
+              type="text"
+              id="shopName"
+              name="shopName"
+              placeholder="Shop Name"
+              value={formData.shopName}
+              onChange={handleInputChange}
+            />
+            {errors.shopName && <p className="error">{errors.shopName}</p>}
+          </div>
 
-        <div className="form-group">
-          <label htmlFor="typeOfItemsSold"><i className="fas fa-tags"></i> Type of Items Sold:</label>
-          <input
-            type="text"
-            id="typeOfItemsSold"
-            name="typeOfItemsSold"
-            placeholder="Type of Items Sold"
-            value={formData.typeOfItemsSold}
-            onChange={handleInputChange}
-          />
-          {errors.typeOfItemsSold && <p className="error">{errors.typeOfItemsSold}</p>}
-        </div>
+          <div className="form-group">
+            <label htmlFor="typeOfItemsSold"><i className="fas fa-tags"></i> Type of Items Sold:</label>
+            <input
+              type="text"
+              id="typeOfItemsSold"
+              name="typeOfItemsSold"
+              placeholder="Type of Items Sold"
+              value={formData.typeOfItemsSold}
+              onChange={handleInputChange}
+            />
+            {errors.typeOfItemsSold && <p className="error">{errors.typeOfItemsSold}</p>}
+          </div>
 
-        <div className="form-group">
-          <label htmlFor="descriptionOfItemsSold"><i className="fas fa-file-alt"></i> Description of Items Sold:</label>
-          <input
-            type="text"
-            id="descriptionOfItemsSold"
-            name="descriptionOfItemsSold"
-            placeholder="Description of Items Sold"
-            value={formData.descriptionOfItemsSold}
-            onChange={handleInputChange}
-          />
-          {errors.descriptionOfItemsSold && <p className="error">{errors.descriptionOfItemsSold}</p>}
-        </div>
+          <div className="form-group">
+            <label htmlFor="descriptionOfItemsSold"><i className="fas fa-file-alt"></i> Description of Items Sold:</label>
+            <input
+              type="text"
+              id="descriptionOfItemsSold"
+              name="descriptionOfItemsSold"
+              placeholder="Description of Items Sold"
+              value={formData.descriptionOfItemsSold}
+              onChange={handleInputChange}
+            />
+            {errors.descriptionOfItemsSold && <p className="error">{errors.descriptionOfItemsSold}</p>}
+          </div>
 
-        <div className="form-group">
-          <label htmlFor="establishmentYears"><i className="fas fa-calendar-alt"></i> Establishment Years:</label>
-          <input
-            type="text"
-            id="establishmentYears"
-            name="establishmentYears"
-            placeholder="Establishment Years"
-            value={formData.establishmentYears}
-            onChange={handleInputChange}
-          />
-          {errors.establishmentYears && <p className="error">{errors.establishmentYears}</p>}
-        </div>
+          <div className="form-group">
+            <label htmlFor="establishmentYears"><i className="fas fa-calendar-alt"></i> Establishment Years:</label>
+            <input
+              type="text"
+              id="establishmentYears"
+              name="establishmentYears"
+              placeholder="Establishment Years"
+              value={formData.establishmentYears}
+              onChange={handleInputChange}
+            />
+            {errors.establishmentYears && <p className="error">{errors.establishmentYears}</p>}
+          </div>
 
-        <div className="form-group">
-          <label htmlFor="altMobileNumber"><i className="fas fa-phone-alt"></i> Alt Mobile Number:</label>
-          <input
-            type="text"
-            id="altMobileNumber"
-            name="altMobileNumber"
-            placeholder="Alt Mobile Number"
-            value={formData.altMobileNumber}
-            onChange={handleInputChange}
-          />
-          {errors.altMobileNumber && <p className="error">{errors.altMobileNumber}</p>}
-        </div>
+          <div className="form-group">
+            <label htmlFor="altMobileNumber"><i className="fas fa-phone-alt"></i> Alt Mobile Number:</label>
+            <input
+              type="text"
+              id="altMobileNumber"
+              name="altMobileNumber"
+              placeholder="Alt Mobile Number"
+              value={formData.altMobileNumber}
+              onChange={handleInputChange}
+            />
+            {errors.altMobileNumber && <p className="error">{errors.altMobileNumber}</p>}
+          </div>
 
-        <div className="form-group">
-          <label htmlFor="pincode"><i className="fas fa-map-pin"></i> Pincode:</label>
-          <input
-            type="text"
-            id="pincode"
-            name="address.pincode"
-            placeholder="Pincode"
-            value={formData.address.pincode}
-            onChange={handleInputChange}
-          />
-          {errors.pincode && <p className="error">{errors.pincode}</p>}
-        </div>
+          <div className="form-group">
+            <label htmlFor="pincode"><i className="fas fa-map-pin"></i> Pincode:</label>
+            <input
+              type="text"
+              id="pincode"
+              name="address.pincode"
+              placeholder="Pincode"
+              value={formData.address.pincode}
+              onChange={handleInputChange}
+            />
+            {errors.pincode && <p className="error">{errors.pincode}</p>}
+          </div>
 
-        <div className="form-group">
-          <label htmlFor="location"><i className="fas fa-map-marker-alt"></i> Location:</label>
-          <input
-            type="text"
-            id="location"
-            name="address.location"
-            placeholder="Location"
-            value={formData.address.location}
-            onChange={handleInputChange}
-          />
-          {errors.location && <p className="error">{errors.location}</p>}
-        </div>
+          <div className="form-group">
+            <label htmlFor="location"><i className="fas fa-map-marker-alt"></i> Location:</label>
+            <input
+              type="text"
+              id="location"
+              name="address.location"
+              placeholder="Location"
+              value={formData.address.location}
+              onChange={handleInputChange}
+            />
+            {errors.location && <p className="error">{errors.location}</p>}
+          </div>
 
-        <div className="form-group">
-          <label htmlFor="city"><i className="fas fa-city"></i> City:</label>
-          <input
-            type="text"
-            id="city"
-            name="address.city"
-            placeholder="City"
-            value={formData.address.city}
-            onChange={handleInputChange}
-          />
-          {errors.city && <p className="error">{errors.city}</p>}
-        </div><div className="form-group">
-          <label htmlFor="landmark"><i className="fas fa-map-pin"></i> Landmark:</label>
-          <input
-            type="text"
-            id="landmark"
-            name="address.landmark"
-            placeholder="Landmark"
-            value={formData.address.landmark}
-            onChange={handleInputChange}
-          />
-          {errors.landmark && <p className="error">{errors.landmark}</p>}
-        </div>
+          <div className="form-group">
+            <label htmlFor="city"><i className="fas fa-city"></i> City:</label>
+            <input
+              type="text"
+              id="city"
+              name="address.city"
+              placeholder="City"
+              value={formData.address.city}
+              onChange={handleInputChange}
+            />
+            {errors.city && <p className="error">{errors.city}</p>}
+          </div><div className="form-group">
+            <label htmlFor="landmark"><i className="fas fa-map-pin"></i> Landmark:</label>
+            <input
+              type="text"
+              id="landmark"
+              name="address.landmark"
+              placeholder="Landmark"
+              value={formData.address.landmark}
+              onChange={handleInputChange}
+            />
+            {errors.landmark && <p className="error">{errors.landmark}</p>}
+          </div>
 
-        <div className="form-group">
-          <label htmlFor="whatsappNumber"><i className="fab fa-whatsapp"></i> WhatsApp Number:</label>
-          <input
-            type="text"
-            id="whatsappNumber"
-            name="whatsappNumber"
-            placeholder="WhatsApp Number"
-            value={formData.whatsappNumber}
-            onChange={handleInputChange}
-          />
-          {errors.whatsappNumber && <p className="error">{errors.whatsappNumber}</p>}
-        </div>
+          <div className="form-group">
+            <label htmlFor="whatsappNumber"><i className="fab fa-whatsapp"></i> WhatsApp Number:</label>
+            <input
+              type="text"
+              id="whatsappNumber"
+              name="whatsappNumber"
+              placeholder="WhatsApp Number"
+              value={formData.whatsappNumber}
+              onChange={handleInputChange}
+            />
+            {errors.whatsappNumber && <p className="error">{errors.whatsappNumber}</p>}
+          </div>
 
-        <div className="form-group">
-          <label htmlFor="gstNumber"><i className="fas fa-id-card"></i> GST Number:</label>
-          <input
-            type="text"
-            id="gstNumber"
-            name="gstNumber"
-            placeholder="GST Number"
-            value={formData.gstNumber}
-            onChange={handleInputChange}
-          />
-          {errors.gstNumber && <p className="error">{errors.gstNumber}</p>}
-        </div>
+          <div className="form-group">
+            <label htmlFor="gstNumber"><i className="fas fa-id-card"></i> GST Number:</label>
+            <input
+              type="text"
+              id="gstNumber"
+              name="gstNumber"
+              placeholder="GST Number"
+              value={formData.gstNumber}
+              onChange={handleInputChange}
+            />
+            {errors.gstNumber && <p className="error">{errors.gstNumber}</p>}
+          </div>
 
-        <div className="form-group">
-          <label htmlFor="estimatedAnnualIncome"><i className="fas fa-dollar-sign"></i> Estimated Annual Income:</label>
-          <input
-            type="text"
-            id="estimatedAnnualIncome"
-            name="estimatedAnnualIncome"
-            placeholder="Estimated Annual Income"
-            value={formData.estimatedAnnualIncome}
-            onChange={handleInputChange}
-          />
-          {errors.estimatedAnnualIncome && <p className="error">{errors.estimatedAnnualIncome}</p>}
-        </div>
+          <div className="form-group">
+            <label htmlFor="estimatedAnnualIncome"><i className="fas fa-dollar-sign"></i> Estimated Annual Income:</label>
+            <input
+              type="text"
+              id="estimatedAnnualIncome"
+              name="estimatedAnnualIncome"
+              placeholder="Estimated Annual Income"
+              value={formData.estimatedAnnualIncome}
+              onChange={handleInputChange}
+            />
+            {errors.estimatedAnnualIncome && <p className="error">{errors.estimatedAnnualIncome}</p>}
+          </div>
 
-        <button type="submit" className="register-button">
-          <i className="fas fa-user-plus"></i> Register as Seller
-        </button>
-      </form>
+          <button type="submit" className="register-button">
+            <i className="fas fa-user-plus"></i> Register as Seller
+          </button>
+        </form>
+      </div>
     </div>
-    </div>
-    
+
   );
 };
 

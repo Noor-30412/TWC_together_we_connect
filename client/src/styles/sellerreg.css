@@ -10,6 +10,10 @@
     /* Updated background color */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     font-family: 'Roboto', sans-serif;
+    margin-top: 6rem;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
 }
 
 .SellerRegistration h2 {
