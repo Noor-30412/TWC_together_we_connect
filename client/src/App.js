@@ -11,7 +11,11 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <AuthProvider>        
+        <AuthProvider>
+          {/* Add the viewport meta tag here */}
+          <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+          </head>
           <AppRoutes />
         </AuthProvider>
       </Router>
