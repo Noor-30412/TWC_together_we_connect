@@ -37,7 +37,11 @@ const ContactUs = () => {
     return (
         <div>
             <Navbar />
-            <div className="contact-page" style={{ backgroundImage: `url(${backgroundImageUrl})` }}>
+            {/* Add viewport meta tag */}
+            <head>
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
+            </head>
+            <div className="contact-page" style={{ backgroundImage: `url(${backgroundImageUrl})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundAttachment: 'scroll', minHeight: '100vh' }}>
                 <form className="contact-form" onSubmit={handleSubmit}>
                     <h2>Contact Us</h2>
                     <p>
