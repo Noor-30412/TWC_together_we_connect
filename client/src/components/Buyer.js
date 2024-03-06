@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { FaShopify, FaMapMarkerAlt, FaPhoneAlt, FaAddressCard, FaMobileAlt } from 'react-icons/fa';
 import '../styles/buyerreg.css';
+import Navbar from '../components/navbar';
 
 const BuyerRegistration = () => {
     const [formData, setFormData] = useState({
@@ -111,167 +112,175 @@ const BuyerRegistration = () => {
     };
 
     return (
-        <div className="BuyerRegistration">
-            <h2><FaShopify /> Buyer Registration</h2>
-            <form onSubmit={handleBuyerRegistration}>
-                {/* Shop Name */}
-                <div className="input-group">
-                    <label htmlFor="shopName"><FaShopify /> Shop Name:</label>
-                    <input
-                        type="text"
-                        id="shopName"
-                        name="shopName"
-                        placeholder="Shop Name"
-                        value={formData.shopName}
-                        onChange={handleInputChange}
-                    />
-                </div>
-                {/* Shipping Address - Pincode */}
-                <div className="input-group">
-                    <label htmlFor="pincode"><FaMapMarkerAlt /> Pincode:</label>
-                    <input
-                        type="text"
-                        id="pincode"
-                        name="shippingAddress.pincode"
-                        placeholder="Pincode"
-                        value={formData.shippingAddress.pincode}
-                        onChange={handleInputChange}
-                    />
-                </div>
-                {/* Shipping Address - Location */}
-                <div className="input-group">
-                    <label htmlFor="location"><FaMapMarkerAlt /> Location:</label>
-                    <input
-                        type="text"
-                        id="location"
-                        name="shippingAddress.location"
-                        placeholder="Location"
-                        value={formData.shippingAddress.location}
-                        onChange={handleInputChange}
-                    />
-                </div>
-                {/* Shipping Address - City */}
-                <div className="input-group">
-                    <label htmlFor="city"><FaMapMarkerAlt /> City:</label>
-                    <input
-                        type="text"
-                        id="city"
-                        name="shippingAddress.city"
-                        placeholder="City"
-                        value={formData.shippingAddress.city}
-                        onChange={handleInputChange}
-                    />
-                </div>
-                {/* Shipping Address - Landmark */}
-                <div className="input-group">
-                    <label htmlFor="landmark"><FaMapMarkerAlt /> Landmark:</label>
-                    <input
-                        type="text"
-                        id="landmark"
-                        name="shippingAddress.landmark"
-                        placeholder="Landmark"
-                        value={formData.shippingAddress.landmark}
-                        onChange={handleInputChange}
-                    />
-                </div>
-                {/* Establishment Years */}
-                <div className="input-group">
-                    <label htmlFor="establishmentYears"><FaAddressCard /> Establishment Years:</label>
-                    <input
-                        type="text"
-                        id="establishmentYears"
-                        name="establishmentYears"
-                        placeholder="Establishment Years"
-                        value={formData.establishmentYears}
-                        onChange={handleInputChange}
-                    />
-                </div>
-                {/* Alt Mobile Number */}
-                <div className="input-group">
-                    <label htmlFor="altMobileNumber"><FaMobileAlt /> Alt Mobile Number:</label>
-                    <input
-                        type="text"
-                        id="altMobileNumber"
-                        name="altMobileNumber"
-                        placeholder="Alt Mobile Number"
-                        value={formData.altMobileNumber}
-                        onChange={handleInputChange}
-                    />
-                </div>
-                {/* Interested Items - Dropdown */}
-                <div className="input-group">
-                    <label htmlFor="interestedItems"><FaAddressCard /> Interested Items:</label>
-                    <select
-                        id="interestedItems"
-                        name="interestedItems"
-                        value={formData.interestedItems}
-                        onChange={handleInputChange}
-                    >
-                        <option value="">Select an option</option>
-                        <option value="Electronics">Electronics</option>
-                        <option value="Clothing">Clothing</option>
-                        <option value="Home Appliances">Home Appliances</option>
-                        {/* Add more options as needed */}
-                    </select>
-                </div>
-                {/* WhatsApp Number */}
-                <div className="input-group">
-                    <label htmlFor="whatsappNumber"><FaPhoneAlt /> WhatsApp Number:</label>
-                    <input
-                        type="text"
-                        id="whatsappNumber"
-                        name="whatsappNumber"
-                        placeholder="WhatsApp Number"
-                        value={formData.whatsappNumber}
-                        onChange={handleInputChange}
-                    />
-                </div>
-                {/* GST Number */}
-                <div className="input-group">
-                    <label htmlFor="gstNumber"><FaAddressCard /> GST Number:</label>
-                    <input
-                        type="text"
-                        id="gstNumber"
-                        name="gstNumber"
-                        placeholder="GST Number"
-                        value={formData.gstNumber}
-                        onChange={handleInputChange}
-                    />
-                </div>
-                {/* Estimated Annual Income */}
-                <div className="input-group">
-                    <label htmlFor="estimatedAnnualIncome"><FaAddressCard /> Estimated Annual Income:</label>
-                    <input
-                        type="text"
-                        id="estimatedAnnualIncome"
-                        name="estimatedAnnualIncome"
-                        placeholder="Estimated Annual Income"
-                        value={formData.estimatedAnnualIncome}
-                        onChange={handleInputChange}
-                    />
-                </div>
-                {/* Terms and Conditions */}
-                <div className="input-group">
-                    <label>
+        <div>
+            <Navbar />
+            <div className="BuyerRegistration">
+                <h2><FaShopify /> Buyer Registration</h2>
+                <form onSubmit={handleBuyerRegistration}>
+                    {/* Shop Name */}
+                    <div className="input-group">
+                        <label htmlFor="shopName"><FaShopify /> Shop Name:</label>
                         <input
-                            type="checkbox"
-                            name="termsAndConditions"
-                            checked={formData.termsAndConditions}
+                            type="text"
+                            id="shopName"
+                            name="shopName"
+                            placeholder="Shop Name"
+                            value={formData.shopName}
                             onChange={handleInputChange}
-                            required
                         />
-                        Accept Terms and Conditions
-                    </label>
-                </div>
-                {/* Error messages */}
-                {Object.keys(errors).map((key) => (
-                    <div className="error" key={key}>
-                        {errors[key]}
+                        {errors.shopName && <div className="error">{errors.shopName}</div>}
                     </div>
-                ))}
-                {/* Submit Button */}
-                <button type="submit">Register as Buyer</button>
-            </form>
+                    {/* Shipping Address - Pincode */}
+                    <div className="input-group">
+                        <label htmlFor="pincode"><FaMapMarkerAlt /> Pincode:</label>
+                        <input
+                            type="text"
+                            id="pincode"
+                            name="shippingAddress.pincode"
+                            placeholder="Pincode"
+                            value={formData.shippingAddress.pincode}
+                            onChange={handleInputChange}
+                        />
+                        {errors.pincode && <div className="error">{errors.pincode}</div>}
+                    </div>
+                    {/* Shipping Address - Location */}
+                    <div className="input-group">
+                        <label htmlFor="location"><FaMapMarkerAlt /> Location:</label>
+                        <input
+                            type="text"
+                            id="location"
+                            name="shippingAddress.location"
+                            placeholder="Location"
+                            value={formData.shippingAddress.location}
+                            onChange={handleInputChange}
+                        />
+                        {errors.location && <div className="error">{errors.location}</div>}
+                    </div>
+                    {/* Shipping Address - City */}
+                    <div className="input-group">
+                        <label htmlFor="city"><FaMapMarkerAlt /> City:</label>
+                        <input
+                            type="text"
+                            id="city"
+                            name="shippingAddress.city"
+                            placeholder="City"
+                            value={formData.shippingAddress.city}
+                            onChange={handleInputChange}
+                        />
+                        {errors.city && <div className="error">{errors.city}</div>}
+                    </div>
+                    {/* Shipping Address - Landmark */}
+                    <div className="input-group">
+                        <label htmlFor="landmark"><FaMapMarkerAlt /> Landmark:</label>
+                        <input
+                            type="text"
+                            id="landmark"
+                            name="shippingAddress.landmark"
+                            placeholder="Landmark"
+                            value={formData.shippingAddress.landmark}
+                            onChange={handleInputChange}
+                        />
+                        {errors.landmark && <div className="error">{errors.landmark}</div>}
+                    </div>
+                    {/* Establishment Years */}
+                    <div className="input-group">
+                        <label htmlFor="establishmentYears"><FaAddressCard /> Establishment Years:</label>
+                        <input
+                            type="text"
+                            id="establishmentYears"
+                            name="establishmentYears"
+                            placeholder="Establishment Years"
+                            value={formData.establishmentYears}
+                            onChange={handleInputChange}
+                        />
+                        {errors.establishmentYears && <div className="error">{errors.establishmentYears}</div>}
+                    </div>
+                    {/* Alt Mobile Number */}
+                    <div className="input-group">
+                        <label htmlFor="altMobileNumber"><FaMobileAlt /> Alt Mobile Number:</label>
+                        <input
+                            type="text"
+                            id="altMobileNumber"
+                            name="altMobileNumber"
+                            placeholder="Alt Mobile Number"
+                            value={formData.altMobileNumber}
+                            onChange={handleInputChange}
+                        />
+                        {errors.altMobileNumber && <div className="error">{errors.altMobileNumber}</div>}
+                    </div>
+                    {/* Interested Items - Dropdown */}
+                    <div className="input-group">
+                        <label htmlFor="interestedItems"><FaAddressCard /> Interested Items:</label>
+                        <select
+                            id="interestedItems"
+                            name="interestedItems"
+                            value={formData.interestedItems}
+                            onChange={handleInputChange}
+                        >
+                            <option value="">Select an option</option>
+                            <option value="Electronics">Electronics</option>
+                            <option value="Clothing">Clothing</option>
+                            <option value="Home Appliances">Home Appliances</option>
+                            {/* Add more options as needed */}
+                        </select>
+                        {errors.interestedItems && <div className="error">{errors.interestedItems}</div>}
+                    </div>
+                    {/* WhatsApp Number */}
+                    <div className="input-group">
+                        <label htmlFor="whatsappNumber"><FaPhoneAlt /> WhatsApp Number:</label>
+                        <input
+                            type="text"
+                            id="whatsappNumber"
+                            name="whatsappNumber"
+                            placeholder="WhatsApp Number"
+                            value={formData.whatsappNumber}
+                            onChange={handleInputChange}
+                        />
+                        {errors.whatsappNumber && <div className="error">{errors.whatsappNumber}</div>}
+                    </div>
+                    {/* GST Number */}
+                    <div className="input-group">
+                        <label htmlFor="gstNumber"><FaAddressCard /> GST Number:</label>
+                        <input
+                            type="text"
+                            id="gstNumber"
+                            name="gstNumber"
+                            placeholder="GST Number"
+                            value={formData.gstNumber}
+                            onChange={handleInputChange}
+                        />
+                        {errors.gstNumber && <div className="error">{errors.gstNumber}</div>}
+                    </div>
+                    {/* Estimated Annual Income */}
+                    <div className="input-group">
+                        <label htmlFor="estimatedAnnualIncome"><FaAddressCard /> Estimated Annual Income:</label>
+                        <input
+                            type="text"
+                            id="estimatedAnnualIncome"
+                            name="estimatedAnnualIncome"
+                            placeholder="Estimated Annual Income"
+                            value={formData.estimatedAnnualIncome}
+                            onChange={handleInputChange}
+                        />
+                        {errors.estimatedAnnualIncome && <div className="error">{errors.estimatedAnnualIncome}</div>}
+                    </div>
+                    {/* Terms and Conditions */}
+                    <div className="input-group">
+                        <label>
+                            <input
+                                type="checkbox"
+                                name="termsAndConditions"
+                                checked={formData.termsAndConditions}
+                                onChange={handleInputChange}
+                                required
+                            />
+                            Accept Terms and Conditions
+                        </label>
+                    </div>
+                    {/* Submit Button */}
+                    <button type="submit">Register as Buyer</button>
+                </form>
+            </div>
         </div>
     );
 };

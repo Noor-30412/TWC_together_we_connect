@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import '../styles/sellerreg.css';
-
+//HELLO
+import Navbar from '../components/navbar'
 const SellerRegistration = () => {
+  
   const [formData, setFormData] = useState({
     shopName: '',
     typeOfItemsSold: '',
@@ -125,9 +127,8 @@ const SellerRegistration = () => {
     } catch (error) {
       console.error('Seller registration error:', error.response.data.message);
     }
-  };
-
-  return (
+  };return (
+    <div><Navbar/>
     <div className="SellerRegistration">
       <h2>Seller Registration</h2>
       <form onSubmit={handleSellerRegistration}>
@@ -233,9 +234,7 @@ const SellerRegistration = () => {
             onChange={handleInputChange}
           />
           {errors.city && <p className="error">{errors.city}</p>}
-        </div>
-
-        <div className="form-group">
+        </div><div className="form-group">
           <label htmlFor="landmark"><i className="fas fa-map-pin"></i> Landmark:</label>
           <input
             type="text"
@@ -292,6 +291,8 @@ const SellerRegistration = () => {
         </button>
       </form>
     </div>
+    </div>
+    
   );
 };
 
