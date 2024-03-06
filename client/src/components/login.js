@@ -92,7 +92,7 @@ const Login = () => {
           </div>
           {error && <p className="text-danger">{error}</p>}
           <div className="form-group mt-4">
-            <button type="submit" className="btn btn-primary btn-block">
+            <button type="submit" className="btn-primary btn-block">
               Login
             </button>
           </div>
