@@ -9,6 +9,7 @@ import RegisterBuyer from './components/Buyer';
 import RegisterSeller from './components/Seller';
 import Signup from './components/signUp';
 import WelcomeForm from './components/Welcome';
+import ContactUs from './components/ContactUs';
 
 const AppRoutes = () => {
   return (
@@ -20,6 +21,7 @@ const AppRoutes = () => {
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/contact" element={<ContactUs />} />
         <Route path="/register-buyer" element={<RegisterBuyer />} />
         <Route path="/register-seller" element={<RegisterSeller />} />
         <Route path="/welcome" element={<WelcomeForm />} />
