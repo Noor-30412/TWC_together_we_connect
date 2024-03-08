@@ -40,7 +40,7 @@ app.use(session({
 // MongoDB Connection
 async function connectToMongoDB() {
   try {
-    await mongoose.connect(process.env.MONGODB_URI, {
+    await mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/TWC", {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
