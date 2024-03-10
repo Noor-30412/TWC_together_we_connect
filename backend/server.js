@@ -11,11 +11,11 @@ const buyerRoutes = require('./routings/buyerRoutes');
 const sellerRoutes = require('./routings/sellerRoutes');
 const bodyParser = require('body-parser');
 const multer = require('multer');
-const path = require('path');
 const buyerDocumentRoutes = require('./routings/buyerDocumentRoutes');
 const sellerDocumentRoutes = require('./routings/sellerDocumentRoutes');
 const contactUsRoutes = require('./routings/contactRoutes');
 const welcome = require('./routings/welcomeRoutes');
+const addProducts = require('./routings/addProductsRoutes');
 
 dotenv.config();
 
@@ -67,6 +67,7 @@ app.use('/api/buyer', buyerDocumentRoutes);
 app.use('/api/seller', sellerDocumentRoutes);
 app.use('/api/contact', contactUsRoutes);
 app.use('/admin/', welcome);
+app.use('/api/add',addProducts);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
